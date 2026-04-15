@@ -27,16 +27,6 @@
   header h1{font-size:1.6rem;font-weight:700;letter-spacing:.04em;color:#fff}
   header p{color:var(--muted);font-size:.83rem;margin-top:6px}
 
-  /* LANG SWITCHER */
-  .lang-switcher{display:flex;justify-content:center;gap:8px;margin-bottom:28px}
-  .lang-btn{
-    background:var(--surface2);border:1px solid var(--border);color:var(--muted);
-    padding:6px 18px;border-radius:20px;cursor:pointer;font-size:.8rem;font-weight:600;
-    transition:all .2s;letter-spacing:.04em
-  }
-  .lang-btn:hover{border-color:var(--accent);color:var(--accent)}
-  .lang-btn.active{background:var(--accent);border-color:var(--accent);color:#fff}
-
   /* LEGEND */
   .legend{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-bottom:22px}
   .legend-item{display:flex;align-items:center;gap:6px;font-size:.76rem;color:var(--muted)}
@@ -94,13 +84,17 @@
   .bpx-insight{font-size:.78rem;color:var(--text);display:flex;gap:8px;line-height:1.4}
   .bpx-arrow{color:#4ade80;flex-shrink:0}
   .bpx-legend{font-size:.68rem;color:var(--muted);margin-top:11px}
+
+  /* Contribute button */
+  .contribute-bar{text-align:center;margin-top:28px}
+  .btn-contribute{display:inline-flex;align-items:center;gap:8px;background:#21262d;
+    border:1px solid #30363d;color:#c9d1d9;border-radius:8px;padding:9px 18px;
+    font-size:.82rem;font-weight:600;text-decoration:none;transition:all .2s;cursor:pointer}
+  .btn-contribute:hover{background:#30363d;border-color:#8b949e;color:#fff}
+  .btn-contribute svg{opacity:.7}
   footer{text-align:center;color:var(--muted);font-size:.72rem;margin-top:36px}
 
   /* i18n hidden */
-  [data-lang]{display:none}
-  [data-lang].visible{display:inline}
-  [data-lang-block]{display:none}
-  [data-lang-block].visible{display:block}
 </style>
 </head>
 <body>
@@ -109,15 +103,10 @@
   <h1>🤖 Comparison Table — Quadruped Robot Dogs</h1>
   <p>
     
-    <span data-lang="en" class="visible">17 models · 17 parameters · data from official sources · April 2026 &nbsp;·&nbsp; <em>work in progress</em></span>
-    <span data-lang="zh">17款机型 · 17项参数 · 数据来源官方 · 2026年4月 &nbsp;·&nbsp; <em>持续更新中</em></span>
+    17 models · 17 parameters · data from official sources · April 2026 &nbsp;·&nbsp; <em>work in progress</em>
+    
   </p>
 </header>
-
-<div class="lang-switcher">
-  <button class="lang-btn active" onclick="setLang('en')">🇬🇧 English</button>
-  <button class="lang-btn" onclick="setLang('zh')">🇨🇳 中文</button>
-</div>
 
 <div class="legend">
   <div class="legend-item"><div class="legend-dot" style="background:#3a5f50"></div>Black Panther</div>
@@ -152,7 +141,7 @@
   </tr>
   <tr class="robot-row">
     <th class="param-label" style="background:var(--surface2);color:var(--muted);font-size:.72rem">
-      <span data-lang="en" class="visible">PARAMETER</span><span data-lang="zh">参数</span>
+      PARAMETER
     </th>
     <th class="unit-label" style="background:var(--surface2)"></th>
     <th class="bp">Black Panther</th>
@@ -182,15 +171,15 @@
 <!-- CHARTS -->
 <div class="charts-grid">
   <div class="chart-card">
-    <h3><span data-lang="en" class="visible">Max payload</span><span data-lang="zh">最大载重</span></h3>
+    <h3>Max payload</h3>
     <div id="chart-payload"></div>
   </div>
   <div class="chart-card">
-    <h3><span data-lang="en" class="visible">Max speed</span><span data-lang="zh">最高速度</span></h3>
+    <h3>Max speed</h3>
     <div id="chart-speed"></div>
   </div>
   <div class="chart-card">
-    <h3><span data-lang="en" class="visible">Battery life</span><span data-lang="zh">续航时间</span></h3>
+    <h3>Battery life</h3>
     <div id="chart-auton"></div>
   </div>
 </div>
@@ -226,25 +215,36 @@
   <div class="bpx-legend">★ in the table = best in the consumer segment for that parameter</div>
 </div>
 
+<div class="contribute-bar">
+  <a class="btn-contribute" href="https://github.com/lorenzocorbo/BPX-Comparative/issues/new?title=Data+correction%3A+%5BRobot+Name%5D&body=%23%23+Data+Correction+Request%0A%0A**Robot+name%3A**+%0A**Parameter%3A**+%0A**Current+value+in+table%3A**+%0A**Correct+value%3A**+%0A**Source+%28link+or+reference%29%3A**+%0A%0A----%0A*Thank+you+for+contributing+to+this+table.*&labels=data-correction" target="_blank">
+    <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+      <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38
+        0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13
+        -.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66
+        .07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15
+        -.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0
+        1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56
+        .82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07
+        -.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/>
+    </svg>
+    Suggest a correction
+    
+  </a>
+</div>
 
 <div style="max-width:860px;margin:28px auto 0;padding:14px 20px;background:#16181f;border:1px solid #2e3148;border-radius:10px;font-size:.74rem;color:#6b7280;line-height:1.6;text-align:center">
-  <span data-lang="en" class="visible">
+  
     Data compiled from publicly available sources: manufacturer specifications, official websites, press releases, and distributor listings.
     All values are as declared by manufacturers and have not been independently tested or verified.
     Specifications may vary between product versions, markets, and configurations.
     This table is subject to ongoing updates and revisions as new information becomes available.
-  </span>
-  <span data-lang="zh">
-    数据来源于公开资料：制造商规格说明、官方网站、新闻发布及经销商信息。
-    所有参数均为制造商申报数值，未经独立测试或核实。
-    规格可能因产品版本、市场及配置不同而有所差异。
-    本表将随新信息的获取持续更新与修订。
-  </span>
+  
+  
 </div>
 
 <footer>
-  <span data-lang="en" class="visible">Data verified April 2026</span>
-  <span data-lang="zh">数据核实于2026年4月</span>
+  Data verified April 2026
+  
 </footer>
 
 <script>
@@ -270,28 +270,6 @@ const LANGS = {
       {p:"Main use case",u:"",v:["Development","Video / filming","Development","Entry robot","General purpose","Development","Development","Research","AI locomotion","Demo / AI","Education","Versatile","Enterprise","Industrial light","Consumer AI / autonomous companion","Light industrial / inspection","companion / guida / patrol / FPV remoto"],sep:false}
     ],
     chartLabels: ["Max payload (kg)", "Max speed (m/s)", "Battery life (h)"]
-  },
-  zh: {
-    rows: [
-      {p:"类别",u:"",v:["专业消费级/开发","消费级","开发/教育","入门级","专业消费级","专业消费级","开发/教育","工程级","AI运动","功能丰富入门","教育","轮腿混合","工业级","轻工业","消费AI","工程级/轻工业","消费级/陪伴"],sep:false},
-      {p:"重量",u:"kg",v:["14.7","15–18.5","15–18.5","~15","~15","~15","~15","~12","15.5","~16–17","~16–17","~22.5","22–28.5","~15","~17","~15","–"],sep:false},
-      {p:"最高速度",u:"m/s",v:["4","1.8 / 3","1.8 / 3","~2.5","~3.5","0 ~ 3.7m/s (MAX ~ 5m/s）","0 ~ 3.7m/s (MAX ~ 5m/s）","3–4","3.5","3","3","3","3–5","–","3.7","3.7","2.5"],sep:false},
-      {p:"最大载重",u:"kg",v:["8","3–7","3–7","≈7kg (MAX ~ 10kg)","≈8kg (MAX ~ 10kg)","≈8kg (MAX ~ 12kg)","≈8kg (MAX ~ 12kg)","5–7.5","~8","5–10","5–10","fino 10","12–15","–","12","~8","3–5"],sep:false},
-      {p:"续航时间",u:"h",v:["~1.5","1.5–3","1.5–3","~1–2","~1–2","~1–2","~2–4","1.5–2","1–2","1.5–3","1.5–3","2–4","3.5–5","~2","5","1–2","–"],sep:false},
-      {p:"电池容量",u:"Ah",v:["8","4–8","4–8","8","8","8","fino 15","–","5","8.2","8.2","–","20","–","594 Wh","5 Ah (43.2V)","–"],sep:false},
-      {p:"最大坡度",u:"°",v:["30","30–35","30–35","~30","~30","~30","~30","40","40","40","40","40","≥30","40","–","30","–"],sep:true},
-      {p:"越障高度",u:"cm",v:["18","16","16","~15","~15","~15","~15","15–18","16","15","15","–","20","16","–","16","–"],sep:false},
-      {p:"防护等级",u:"",v:["IP43","–","–","–","–","–","–","–","–","–","–","–","IP66–67","IP54","–","IP54","–"],sep:false},
-      {p:"工作温度",u:"",v:["0–40°C","0–40°C","0–40°C","–","–","–","–","–","–","–","–","–","-20–55°C","–","–","0–40°C","–"],sep:false},
-      {p:"价格",u:"$",v:["$1,499 (KS) / $1,999","$2,099–2,649","$3,999–7,999","$1,600","$2,800","$4,500","~$12,000","$4,995–14,500","$3,200","$3,300–3,500","~$6,400","$12,500","–","–","~$1,380 (¥9,988)","$9,450–21,999","~$2,314"],sep:true},
-      {p:"自由度",u:"",v:["12","–","–","12","12","12","12","–","12","13","13","–","–","–","12","–","13"],sep:false},
-      {p:"关节扭矩",u:"Nm",v:["33","–","–","–","–","–","–","–","48","~37.5","~37.5","–","–","–","24.5","–","–"],sep:false},
-      {p:"传感器",u:"",v:["基础","基础","基础/完整","基础激光雷达","LiDAR","激光雷达+","激光雷达+","模块化","模块化","完整","完整","完整","高级","模块化","360°激光雷达, UWB, 深度摄像头, 麦克风阵列","模块化","2摄像头(鼻+胸),无激光雷达"],sep:true},
-      {p:"AI / 自主能力",u:"",v:["中等","跟随模式","跟随模式","中等","中等","高","高","高(开发)","高(RL)","中等","高","中等","非常高","高","高（AI自主）","高","高"],sep:false},
-      {p:"模块化程度",u:"",v:["非常高","低","低","中等","中等","高","高","非常高","高","中等","高","高","非常高","高","低","高","低"],sep:false},
-      {p:"主要用途",u:"",v:["开发","拍摄/跟拍","开发","入门机器人","通用","开发","开发","研究","AI运动","演示/AI","教育","多功能","企业级","轻工业","消费AI / 自主伴侣","轻工业/巡检","陪伴/导引/巡逻/实时遥控"],sep:false}
-    ],
-    chartLabels: ["最大载重 (kg)", "最高速度 (m/s)", "续航时间 (h)"]
   }
 };
 
@@ -317,8 +295,6 @@ const chartData = [
   {n:"AiMOGA Argos",payload:3.0,speed:2.5,auton:null,color:"#52237a"}
 ];
 
-
-
 function highlightBPX() {
   var tbody = document.getElementById('table-body');
   if (!tbody) return;
@@ -339,18 +315,6 @@ function highlightBPX() {
       }
     }
   });
-}
-
-
-function setLang(lang) {
-  document.querySelectorAll('[data-lang]').forEach(el => {
-    el.classList.toggle('visible', el.dataset.lang === lang);
-  });
-  document.querySelectorAll('.lang-btn').forEach(btn => {
-    btn.classList.toggle('active', btn.textContent.includes(lang === 'en' ? 'English' : '中文'));
-  });
-  renderTable(lang);
-  renderCharts(lang);
 }
 
 function renderTable(lang) {
